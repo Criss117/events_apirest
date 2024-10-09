@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.edu.unicauca.events.domain;
 
 import jakarta.persistence.Entity;
@@ -17,28 +13,28 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "person")
-public class Person implements Serializable{
-    public String name;
-    @Id //define la llave rpimaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //genera automaticamente el Id
-    private Long id;
-    
-    //getters y setters..
+public class Person implements Serializable {
 
-    public String getName() {
-        return name;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String name;
 
-    public Long getId() {
-        return id;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
 }

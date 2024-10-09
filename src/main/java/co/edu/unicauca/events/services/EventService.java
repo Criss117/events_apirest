@@ -16,37 +16,40 @@ import org.springframework.stereotype.Component;
  * @author FABIAN G
  */
 @Component
-public class EventService implements IEventService{
+public class EventService implements IEventService {
+  @Autowired
+  EventRepository eventDao;
 
-@Autowired
- EventRepository eventDao;
+  @Override
+  @Transactional
+  public List<Event> findAll() {
+    return (List<Event>) eventDao.findAll();
+  }
 
- @Override
- @Transactional
- public List<Event> findAll() {
- return (List<Event>) eventDao.findAll();
- }
- @Override
- @Transactional
- public Event findById(Long id) {
- Event e = eventDao.findById(id).orElse(null);
- return e;
- }
- @Override
- @Transactional
- public Event create(Event event) {
- return eventDao.save(event);
- }
- @Override
- @Transactional
- public Event update(Long id, Event event) {
- Event e = findById(id);
- e.setName(event.getName());
- return eventDao.save(e);
- }
- @Override
- @Transactional
- public void deleteById(Long id) {
- eventDao.deleteById(id);
- }
+  @Override
+  @Transactional
+  public Event findById(Long id) {
+    Event e = eventDao.findById(id).orElse(null);
+    return e;
+  }
+
+  @Override
+  @Transactional
+  public Event create(Event event) {
+    return eventDao.save(event);
+  }
+
+  @Override
+  @Transactional
+  public Event update(Long id, Event event) {
+    Event e = findById(id);
+    e.setName(event.getName());
+    return eventDao.save(e);
+  }
+
+  @Override
+  @Transactional
+  public void deleteById(Long id) {
+    eventDao.deleteById(id);
+  }
 }

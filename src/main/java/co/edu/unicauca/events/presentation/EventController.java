@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.edu.unicauca.events.presentation;
 
 import co.edu.unicauca.events.domain.Event;
@@ -24,26 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Component
 @RequestMapping("/events")
-    public class EventController {
-    @Autowired
-    IEventService eventService;
+public class EventController {
+  @Autowired
+  IEventService eventService;
 
-    @RequestMapping(method = RequestMethod.GET, produces ="application/json")
-    @ResponseBody
-    public List<Event> findAll() {
-        return eventService.findAll();
-    }
+  @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+  @ResponseBody
+  public List<Event> findAll() {
+    return eventService.findAll();
+  }
 
-    @RequestMapping(method = RequestMethod.POST, produces ="application/json")
-    @ResponseBody
-    public Event create(@RequestBody Event event) {
-        return eventService.create(event);
-    }
-    
-    /* Get a Event by ID */
-    @GetMapping("/{id}")
-    public Event getEventById(@PathVariable Long id) {
+  @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  public Event create(@RequestBody Event event) {
+    return eventService.create(event);
+  }
+
+  /* Get a Event by ID */
+  @GetMapping("/{id}")
+  public Event getEventById(@PathVariable Long id) {
     return eventService.findById(id);
- }
+  }
 }
-

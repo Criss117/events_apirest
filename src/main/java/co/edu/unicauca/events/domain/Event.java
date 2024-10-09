@@ -19,31 +19,30 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Entity
 @Table(name = "events")
-public class Event implements Serializable{
-    @Autowired
-    Person chair;
-    List<Person> comite;
-    
-    private String name;
-    @Id //define la llave rpimaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //genera automaticamente el Id
-    private Long id;
+public class Event implements Serializable {
+  @Autowired
+  Person chair;
+  List<Person> comite;
 
- // agergar getters y setters...
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 }

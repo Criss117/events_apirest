@@ -12,10 +12,13 @@ import java.util.List;
  * @author FABIAN G
  */
 public interface IEventService {
- public List<Event> findAll();
- public Event findById(Long id);
- public Event create(Event event);
- public Event update(Long id, Event event);
- public void deleteById(Long id);
-}
+  public List<Event> findAll();
 
+  public Event findById(Long id);
+
+  public Event create(Event event);
+
+  public Event update(Long id, Event event);
+
+  public void deleteById(Long id);
+}
