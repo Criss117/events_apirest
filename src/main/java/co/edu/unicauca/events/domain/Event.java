@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.edu.unicauca.events.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -19,31 +11,50 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Entity
 @Table(name = "events")
-public class Event implements Serializable{
-    @Autowired
-    Person chair;
-    List<Person> comite;
-    
-    private String name;
-    @Id //define la llave rpimaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //genera automaticamente el Id
-    private Long id;
+public class Event implements Serializable {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
- // agergar getters y setters...
+  private String name;
 
-    public String getName() {
-        return name;
-    }
+  @OneToOne(targetEntity = Person.class, cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "chair_id", updatable = false)
+  private Person chair;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  @OneToMany(targetEntity = Person.class, fetch = FetchType.LAZY)
+  private List<Person> committee;
 
-    public Long getId() {
-        return id;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Person getChair() {
+    return chair;
+  }
+
+  public void setChair(Person chair) {
+    this.chair = chair;
+  }
+
+  public List<Person> getCommittee() {
+    return committee;
+  }
+
+  public void setCommittee(List<Person> committee) {
+    this.committee = committee;
+  }
+
 }
