@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.edu.unicauca.events.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -20,15 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Entity
 @Table(name = "events")
 public class Event implements Serializable {
-  @Autowired
-  Person chair;
-  List<Person> comite;
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
+
+  @OneToOne(targetEntity = Person.class, cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "chair_id", updatable = false)
+  private Person chair;
+
+  @OneToMany(targetEntity = Person.class, fetch = FetchType.LAZY)
+  private List<Person> committee;
 
   public String getName() {
     return name;
@@ -45,4 +40,21 @@ public class Event implements Serializable {
   public void setId(Long id) {
     this.id = id;
   }
+
+  public Person getChair() {
+    return chair;
+  }
+
+  public void setChair(Person chair) {
+    this.chair = chair;
+  }
+
+  public List<Person> getCommittee() {
+    return committee;
+  }
+
+  public void setCommittee(List<Person> committee) {
+    this.committee = committee;
+  }
+
 }

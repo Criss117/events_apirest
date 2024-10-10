@@ -1,6 +1,7 @@
 package co.edu.unicauca.events.presentation;
 
 import co.edu.unicauca.events.domain.Event;
+import co.edu.unicauca.events.domain.Person;
 import co.edu.unicauca.events.services.IEventService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class EventController {
   @GetMapping("/{id}")
   public Event getEventById(@PathVariable Long id) {
     return eventService.findById(id);
+  }
+
+  @GetMapping("/{id}/committee")
+  public List<Person> getCommittee(@PathVariable Long id) {
+    return eventService.findCommittee(id);
   }
 }

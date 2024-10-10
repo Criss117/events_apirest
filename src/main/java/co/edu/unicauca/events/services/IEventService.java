@@ -5,6 +5,8 @@
 package co.edu.unicauca.events.services;
 
 import co.edu.unicauca.events.domain.Event;
+import co.edu.unicauca.events.domain.Person;
+
 import java.util.List;
 
 /**
@@ -21,4 +23,6 @@ public interface IEventService {
   public Event update(Long id, Event event);
 
   public void deleteById(Long id);
+
+  public List<Person> findCommittee(Long eventId);
 }

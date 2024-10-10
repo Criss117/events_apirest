@@ -6,8 +6,11 @@ package co.edu.unicauca.events.services;
 
 import co.edu.unicauca.events.dao.EventRepository;
 import co.edu.unicauca.events.domain.Event;
+import co.edu.unicauca.events.domain.Person;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,5 +54,16 @@ public class EventService implements IEventService {
   @Transactional
   public void deleteById(Long id) {
     eventDao.deleteById(id);
+  }
+
+  @Override
+  public List<Person> findCommittee(Long eventId) {
+    Optional<Event> event = eventDao.findById(eventId);
+
+    if (event.isEmpty()) {
+      throw new RuntimeException("Event not found");
+    }
+
+    return  event.get().getCommittee();
   }
 }
