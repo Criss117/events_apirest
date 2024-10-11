@@ -64,6 +64,6 @@ public class EventService implements IEventService {
       throw new RuntimeException("Event not found");
     }
 
-    return  event.get().getCommittee();
+    return  event.get().getComite();
   }
 }
